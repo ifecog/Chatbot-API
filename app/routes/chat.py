@@ -1,12 +1,19 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 from app.schemas.chat import ChatRequest, ChatResponse
-from app.core.openai_chain import chat_with_gpt
+from app.core.chat_engine import chat_engine
 
-router = APIRouter()
+router = APIRouter(prefix='/chat', tags=['Chat'])
 
 
 @router.post('/', response_model=ChatResponse)
 async def chat(request: ChatRequest):
-    reply = chat_with_gpt(request.message)
-    return ChatResponse(response=reply)
+    try:
+        ai_response = await chat_engine.get_response(request.message)
+        return ChatResponse(response=ai_response)
+    
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f'Error processing chat request: {str(e)}'
+        )

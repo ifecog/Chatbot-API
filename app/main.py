@@ -1,17 +1,17 @@
 from fastapi import FastAPI
 from dotenv import load_dotenv
 
-from app.routes import chat
+from app.routes.chat import router as chat_router
 
 load_dotenv()
 
 app = FastAPI(
     title='Chatbot API',
-    description='A simpe chatbot using OpenAI GPT-4o'
+    description='A simple chatbot using OpenAI GPT-4o',
     version='1.0.0'
 )
 
-app.include_router(chat.router, prefix='/chat', tags=['Chat'])
+app.include_router(chat_router)
 
 
 @app.get('/')
