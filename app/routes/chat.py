@@ -35,7 +35,6 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
     if not session:
         raise HTTPException(status_code=404, detail='Session not found.')
     
-    # Save user's message
     user_msg = ChatMessage(
         session_id=request.session_id,
         message_type='human',
@@ -45,7 +44,6 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
     db.add(user_msg)
     db.commit()
     
-    # Get AI response
     try:
         ai_response = await chat_engine.get_response(
             message=request.message,

@@ -8,7 +8,6 @@ from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 
 from sqlalchemy.orm import Session
 
-from app.dependencies import get_db
 from app.models import ChatSession, ChatMessage
 
 load_dotenv()
@@ -27,7 +26,6 @@ class ChatEngine:
             api_key=os.getenv('OPENAI_API_KEY')
         )
         logger.info("Chat engine initialized with GPT model.")
-        # self.conversations = defaultdict(list)
         
     def _get_conversation_messages(self, session_id: str, db: Session):
         db_messages = db.query(ChatMessage).filter(
@@ -43,11 +41,6 @@ class ChatEngine:
                 
         return langchain_messages
         
-        # if session_id not in self.conversations:
-        #     self.conversations[session_id] = []
-            
-        # return self.conversations[session_id]
-        
     def _save_ai_messages(self, session_id: str, ai_message: str, db: Session):
         session = db.query(ChatSession).filter(ChatSession.session_id == session_id).first()
         if not session:
@@ -56,7 +49,6 @@ class ChatEngine:
         else:
             session.updated_at = datetime.utcnow()
         
-        # Save AI message
         ai_msg = ChatMessage(
             session_id=session_id,
             message_type='ai',
@@ -79,9 +71,6 @@ class ChatEngine:
             logger.info(f"LLM Response: {ai_response.content}")
             
             self._save_ai_messages(session_id, ai_response.content, db)
-            
-            # conversation_messages.append(HumanMessage(content=message))
-            # conversation_messages.append(AIMessage(content=ai_response.content))
             
             return ai_response.content
         
@@ -110,12 +99,7 @@ class ChatEngine:
             db.rollback()
             logger.exception("Error clearing session.")
             raise Exception(f"Error clearing session: {str(e)}")
-                
-        # if session_id in self.conversations:
-        #     del self.conversations[session_id]
-        #     return True
-        # return False
-    
+
     def get_session_history(self, session_id: str, db: Session):
         messages = db.query(ChatMessage).filter(
             ChatMessage.session_id == session_id
@@ -132,22 +116,7 @@ class ChatEngine:
                 "message": msg.content
             })
             
-        return history
-        
-        # if session_id in self.conversations and self.conversations[session_id]:
-        #     history = []
-        #     messages = self.conversations[session_id]
-            
-        #     for msg in messages:
-        #         if isinstance(msg, HumanMessage):
-        #             history.append(f'Human: {msg.content}')
-        #         elif isinstance(msg, AIMessage):
-        #             history.append(f'AI: {msg.content}')
-                    
-        #     return '\n'.join(history)
-        
-        # return 'No conversation history found.' 
-    
+        return history    
         
 chat_engine = ChatEngine()
 
