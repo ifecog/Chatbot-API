@@ -7,7 +7,7 @@ load_dotenv()
 
 app = FastAPI(
     title='Chatbot API',
-    description='A simple chatbot using OpenAI GPT-4o',
+    description='A simple chatbot using OpenAI GPT-4o  model',
     version='1.0.0'
 )
 
