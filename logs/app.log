@@ -1,0 +1,4 @@
+2025-06-15 15:38:42,744 [INFO] app.core.chat_engine: Recieved message for 9bcb1744-dc50-467c-b733-79618edca84e: What can you say my profession is?
+2025-06-15 15:38:46,235 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-15 15:38:46,265 [INFO] app.core.chat_engine: LLM Response: Your profession is a Backend Engineer, with over three years of experience primarily in building APIs using Python, Django, Django REST Framework, and FastAPI.
+2025-06-15 15:38:46,276 [INFO] app.core.chat_engine: Messages saved to db for session: 9bcb1744-dc50-467c-b733-79618edca84e

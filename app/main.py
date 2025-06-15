@@ -1,9 +1,12 @@
 from fastapi import FastAPI
 from dotenv import load_dotenv
 
+from app.logging_config import setup_logging
 from app.routes.chat import router as chat_router
 
 load_dotenv()
+
+setup_logging()
 
 app = FastAPI(
     title='Chatbot API',

@@ -1,5 +1,6 @@
 import os
 import logging
+
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -10,9 +11,9 @@ from sqlalchemy.orm import Session
 
 from app.models import ChatSession, ChatMessage
 
+
 load_dotenv()
 
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 DEFAULT_SYSTEM_PROMPT = "You are a helpful AI assistant. Respond concisely and clearly."
