@@ -10,6 +10,7 @@ from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from sqlalchemy.orm import Session
 
 from app.models import ChatSession, ChatMessage
+from app.core.vector_engine import retrieve_similar_chunks
 
 
 load_dotenv()
@@ -60,13 +61,31 @@ class ChatEngine:
         db.commit()
         logger.info(f"Messages saved to db for session: {session_id}")
         
+    def _build_prompt_with_rag_context(self, query: str):
+        chunks = retrieve_similar_chunks(query, k=4)
+        
+        if not chunks:
+            return query
+        
+        context = '\n--\n'.join([doc.page_content for doc in chunks])
+        prompt = (
+            f"You are an helpful assistant.\n"
+            f"Use the context below to answer the user's question.\n\n"
+            f"Context:\n{context}\n\n"
+            f"Question: {query}\nAnswer:"
+        )
+        
+        return prompt
+        
     async def get_response(self, message: str, session_id: str, db: Session):       
         try:
             logger.info(f"Recieved message for {session_id}: {message}")
             
             conversation_messages = self._get_conversation_messages(session_id, db)
             
-            current_messages = conversation_messages + [HumanMessage(content=message)]
+            prompt_with_context = self._build_prompt_with_rag_context(message)
+            
+            current_messages = conversation_messages + [HumanMessage(content=prompt_with_context)]
             
             ai_response = self.llm.invoke(current_messages)
             logger.info(f"LLM Response: {ai_response.content}")
