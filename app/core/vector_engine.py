@@ -12,7 +12,7 @@ FAISS_PATH = 'faiss_index'
 def load_vector_store(faiss_path: str = FAISS_PATH):
     try:
         logger.info(f'Loading vector store from {faiss_path}')
-        return FAISS.load_local(faiss_path, embeddings=embedding_model)
+        return FAISS.load_local(faiss_path, embeddings=embedding_model, allow_dangerous_deserialization=True)
     except Exception as e:
         logger.exception(f'Error loading vector store: {str(e)}')
         raise

@@ -7,7 +7,7 @@ from app.schemas.chat import ChatRequest, ChatResponse
 from app.core.chat_engine import chat_engine
 from app.dependencies import get_db
 
-router = APIRouter(prefix='/chat', tags=['Chat'])
+router = APIRouter(prefix='/api/v1/chat', tags=['Chat'])
 
 
 @router.post('/new-session')

@@ -2,3 +2,84 @@
 2025-06-15 15:38:46,235 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2025-06-15 15:38:46,265 [INFO] app.core.chat_engine: LLM Response: Your profession is a Backend Engineer, with over three years of experience primarily in building APIs using Python, Django, Django REST Framework, and FastAPI.
 2025-06-15 15:38:46,276 [INFO] app.core.chat_engine: Messages saved to db for session: 9bcb1744-dc50-467c-b733-79618edca84e
+2025-06-20 07:25:52,536 [INFO] app.core.vector_store: Loading file: C:\Users\hp\AppData\Local\Temp\tmpiwjnke7b.pdf
+2025-06-20 07:25:52,537 [ERROR] app.core.vector_store: Failed to create vectore store: Error loading C:\Users\hp\AppData\Local\Temp\tmpiwjnke7b.pdf
+Traceback (most recent call last):
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\venv\Lib\site-packages\langchain_community\document_loaders\text.py", line 43, in lazy_load
+    text = f.read()
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x8d in position 702: character maps to <undefined>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\app\core\vector_store.py", line 20, in create_vector_store_from_file
+    documents = loader.load()
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\venv\Lib\site-packages\langchain_core\document_loaders\base.py", line 32, in load
+    return list(self.lazy_load())
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\venv\Lib\site-packages\langchain_community\document_loaders\text.py", line 56, in lazy_load
+    raise RuntimeError(f"Error loading {self.file_path}") from e
+RuntimeError: Error loading C:\Users\hp\AppData\Local\Temp\tmpiwjnke7b.pdf
+2025-06-20 07:33:36,181 [INFO] app.core.vector_store: Loading file: C:\Users\hp\AppData\Local\Temp\tmp4_j11hj3.pdf
+2025-06-20 07:33:37,245 [ERROR] app.core.vector_store: Failed to create vectore store: TextSplitter.__init__() got an unexpected keyword argument 'chunk_overlaps'. Did you mean 'chunk_overlap'?
+Traceback (most recent call last):
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\app\core\vector_store.py", line 20, in create_vector_store_from_file
+    docs = load_and_split_docs(file_path)
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\app\core\document_loader.py", line 19, in load_and_split_docs
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=500,
+        chunk_overlaps=100
+    )
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\venv\Lib\site-packages\langchain_text_splitters\character.py", line 73, in __init__
+    super().__init__(keep_separator=keep_separator, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: TextSplitter.__init__() got an unexpected keyword argument 'chunk_overlaps'. Did you mean 'chunk_overlap'?
+2025-06-20 07:35:53,784 [INFO] app.core.vector_store: Loading file: C:\Users\hp\AppData\Local\Temp\tmpwgy6q_ed.pdf
+2025-06-20 07:35:54,995 [INFO] app.core.vector_store: Split into 15 chunks.
+2025-06-20 07:36:02,961 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-20 07:36:03,125 [INFO] faiss.loader: Loading faiss with AVX2 support.
+2025-06-20 07:36:03,247 [INFO] faiss.loader: Successfully loaded faiss with AVX2 support.
+2025-06-20 07:36:03,263 [INFO] faiss: Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-06-20 07:36:03,275 [INFO] app.core.vector_store: Vector store saved to: faiss_index
+2025-06-20 07:36:57,970 [INFO] app.core.chat_engine: Recieved message for 84fc3864-7d52-4ce5-ad32-5dad03e641b2: Hi. I uploaded a file for you to review
+2025-06-20 07:36:57,978 [INFO] app.core.vector_engine: Loading vector store from faiss_index
+2025-06-20 07:36:57,979 [ERROR] app.core.vector_engine: Error loading vector store: The de-serialization relies loading a pickle file. Pickle files can be modified to deliver a malicious payload that results in execution of arbitrary code on your machine.You will need to set `allow_dangerous_deserialization` to `True` to enable deserialization. If you do this, make sure that you trust the source of the data. For example, if you are loading a file that you created, and know that no one else has modified the file, then this is safe to do. Do not set this to `True` if you are loading a file from an untrusted source (e.g., some random site on the internet.).
+Traceback (most recent call last):
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\app\core\vector_engine.py", line 15, in load_vector_store
+    return FAISS.load_local(faiss_path, embeddings=embedding_model)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\venv\Lib\site-packages\langchain_community\vectorstores\faiss.py", line 1190, in load_local
+    raise ValueError(
+    ...<10 lines>...
+    )
+ValueError: The de-serialization relies loading a pickle file. Pickle files can be modified to deliver a malicious payload that results in execution of arbitrary code on your machine.You will need to set `allow_dangerous_deserialization` to `True` to enable deserialization. If you do this, make sure that you trust the source of the data. For example, if you are loading a file that you created, and know that no one else has modified the file, then this is safe to do. Do not set this to `True` if you are loading a file from an untrusted source (e.g., some random site on the internet.).
+2025-06-20 07:36:57,981 [ERROR] app.core.vector_engine: Failed to retrieve doocuments: The de-serialization relies loading a pickle file. Pickle files can be modified to deliver a malicious payload that results in execution of arbitrary code on your machine.You will need to set `allow_dangerous_deserialization` to `True` to enable deserialization. If you do this, make sure that you trust the source of the data. For example, if you are loading a file that you created, and know that no one else has modified the file, then this is safe to do. Do not set this to `True` if you are loading a file from an untrusted source (e.g., some random site on the internet.).
+Traceback (most recent call last):
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\app\core\vector_engine.py", line 22, in retrieve_similar_chunks
+    vector_store = load_vector_store()
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\app\core\vector_engine.py", line 15, in load_vector_store
+    return FAISS.load_local(faiss_path, embeddings=embedding_model)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\venv\Lib\site-packages\langchain_community\vectorstores\faiss.py", line 1190, in load_local
+    raise ValueError(
+    ...<10 lines>...
+    )
+ValueError: The de-serialization relies loading a pickle file. Pickle files can be modified to deliver a malicious payload that results in execution of arbitrary code on your machine.You will need to set `allow_dangerous_deserialization` to `True` to enable deserialization. If you do this, make sure that you trust the source of the data. For example, if you are loading a file that you created, and know that no one else has modified the file, then this is safe to do. Do not set this to `True` if you are loading a file from an untrusted source (e.g., some random site on the internet.).
+2025-06-20 07:36:57,983 [ERROR] app.core.chat_engine: Error in get_response
+Traceback (most recent call last):
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\app\core\chat_engine.py", line 86, in get_response
+    prompt_with_context = self._build_prompt_with_rag_context(message)
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\app\core\chat_engine.py", line 65, in _build_prompt_with_rag_context
+    chunks = retrieve_similar_chunks(query, k=4)
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\app\core\vector_engine.py", line 22, in retrieve_similar_chunks
+    vector_store = load_vector_store()
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\app\core\vector_engine.py", line 15, in load_vector_store
+    return FAISS.load_local(faiss_path, embeddings=embedding_model)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\venv\Lib\site-packages\langchain_community\vectorstores\faiss.py", line 1190, in load_local
+    raise ValueError(
+    ...<10 lines>...
+    )
+ValueError: The de-serialization relies loading a pickle file. Pickle files can be modified to deliver a malicious payload that results in execution of arbitrary code on your machine.You will need to set `allow_dangerous_deserialization` to `True` to enable deserialization. If you do this, make sure that you trust the source of the data. For example, if you are loading a file that you created, and know that no one else has modified the file, then this is safe to do. Do not set this to `True` if you are loading a file from an untrusted source (e.g., some random site on the internet.).
