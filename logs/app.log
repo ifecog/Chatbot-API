@@ -83,3 +83,40 @@ Traceback (most recent call last):
     ...<10 lines>...
     )
 ValueError: The de-serialization relies loading a pickle file. Pickle files can be modified to deliver a malicious payload that results in execution of arbitrary code on your machine.You will need to set `allow_dangerous_deserialization` to `True` to enable deserialization. If you do this, make sure that you trust the source of the data. For example, if you are loading a file that you created, and know that no one else has modified the file, then this is safe to do. Do not set this to `True` if you are loading a file from an untrusted source (e.g., some random site on the internet.).
+2025-06-20 07:40:16,276 [INFO] app.core.chat_engine: Recieved message for 84fc3864-7d52-4ce5-ad32-5dad03e641b2: Hi. I uploaded a file for you to review
+2025-06-20 07:40:16,284 [INFO] app.core.vector_engine: Loading vector store from faiss_index
+2025-06-20 07:40:16,294 [INFO] faiss.loader: Loading faiss with AVX2 support.
+2025-06-20 07:40:16,376 [INFO] faiss.loader: Successfully loaded faiss with AVX2 support.
+2025-06-20 07:40:16,389 [INFO] faiss: Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-06-20 07:40:18,141 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-20 07:40:18,209 [INFO] app.core.vector_engine: Retrieved 4 chinks from query: Hi. I uploaded a file for you to review
+2025-06-20 07:40:19,979 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-20 07:40:20,016 [INFO] app.core.chat_engine: LLM Response: It seems you provided a profile overview of Ifeoluwa Ilori, highlighting his experience, education, and projects. If you need further assistance or have specific questions about the content, please let me know!
+2025-06-20 07:40:20,038 [INFO] app.core.chat_engine: Messages saved to db for session: 84fc3864-7d52-4ce5-ad32-5dad03e641b2
+2025-06-20 07:40:45,939 [INFO] app.core.chat_engine: Recieved message for 84fc3864-7d52-4ce5-ad32-5dad03e641b2: Yes, I want you to rate the resume
+2025-06-20 07:40:45,941 [INFO] app.core.vector_engine: Loading vector store from faiss_index
+2025-06-20 07:40:47,009 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-20 07:40:47,014 [INFO] app.core.vector_engine: Retrieved 4 chinks from query: Yes, I want you to rate the resume
+2025-06-20 07:40:58,402 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-20 07:40:58,404 [INFO] app.core.chat_engine: LLM Response: Based on the provided information, here's a qualitative assessment of Ifeoluwa Ilori's resume:
+
+1. **Contact Information**: The resume includes a professional email, phone number, LinkedIn profile, and GitHub link, which is excellent for showcasing professional and project work.
+
+2. **Experience**: 
+   - **Backend Engineer at Send24**: The experience is recent and highlights the development of scalable API endpoints and user behavior tracking systems. The mention of serving over 10,000 monthly active users is a strong point, demonstrating the impact of the work.
+   - **Software Development Intern at BlueScripts Educational Institute**: The internship shows early experience in software development, which is beneficial.
+
+3. **Education**: A Bachelor of Science in Mechanical Engineering from a reputable university adds a solid educational background. However, there’s no direct mention of how this degree ties into software development, which could be elaborated on.
+
+4. **Projects**:
+   - **RideX – Ride Sharing Platform Backend**: This is a significant project showcasing skills in microservices, asynchronous task processing, and analytics. Including a GitHub link allows potential employers to view the actual work, which is a plus.
+
+5. **Technical Skills**: Although not explicitly listed, the resume implies skills in API development, microservices, distributed systems, and data processing. Explicitly listing technical skills could further strengthen the resume.
+
+6. **Overall Presentation**:
+   - The resume is concise and focuses on impactful achievements and technical competencies.
+   - It could benefit from a brief summary or objective at the top to give a snapshot of career goals and strengths.
+   - Including specific programming languages, tools, and technologies in a dedicated skills section would provide a clearer picture of technical expertise.
+
+**Overall Rating**: 8/10. The resume effectively highlights relevant experience and projects, but could be improved with a summary section and explicit listing of technical skills.
+2025-06-20 07:40:58,420 [INFO] app.core.chat_engine: Messages saved to db for session: 84fc3864-7d52-4ce5-ad32-5dad03e641b2
