@@ -137,3 +137,21 @@ ValueError: The de-serialization relies loading a pickle file. Pickle files can 
 2025-06-24 06:39:59,181 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2025-06-24 06:39:59,186 [INFO] app.core.chat_engine: LLM Response: The black hole and wormhole concepts in Interstellar, particularly Gargantua, are indeed some of the most fascinating elements of the film. Gargantua is a massive black hole that plays a crucial role in the plot, and its depiction is based on scientific theories to ensure accuracy. The filmmakers consulted with physicist Kip Thorne to realistically portray the gravitational effects and visual appearance of a black hole. The depiction of time dilation near Gargantua, where time moves slower due to its immense gravitational pull, is a particularly intriguing aspect of the film. It blends science with storytelling, making it both educational and captivating.
 2025-06-24 06:39:59,193 [INFO] app.core.chat_engine: Messages saved to db for session: 4c058ac2-00e4-4e72-a591-a2cd17d320e7
+2025-06-24 11:59:14,004 [WARNING] passlib.handlers.bcrypt: (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-24 12:28:19,441 [WARNING] passlib.handlers.bcrypt: (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-24 12:41:11,265 [WARNING] passlib.handlers.bcrypt: (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
