@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from app.logging_config import setup_logging
 from app.routes.chat import router as chat_router
 from app.routes.upload import router as upload_router
+from app.routes.user import router as user_router
 
 load_dotenv()
 
@@ -17,6 +18,7 @@ app = FastAPI(
 
 app.include_router(chat_router)
 app.include_router(upload_router)
+app.include_router(user_router)
 
 
 @app.get('/')

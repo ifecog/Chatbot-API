@@ -120,3 +120,20 @@ ValueError: The de-serialization relies loading a pickle file. Pickle files can 
 
 **Overall Rating**: 8/10. The resume effectively highlights relevant experience and projects, but could be improved with a summary section and explicit listing of technical skills.
 2025-06-20 07:40:58,420 [INFO] app.core.chat_engine: Messages saved to db for session: 84fc3864-7d52-4ce5-ad32-5dad03e641b2
+2025-06-24 06:39:13,112 [INFO] app.core.chat_engine: Recieved message for 4c058ac2-00e4-4e72-a591-a2cd17d320e7: Hey. My name is Ife. I just watched Interstellar. Just wow!
+2025-06-24 06:39:13,117 [INFO] app.core.vector_engine: Loading vector store from faiss_index
+2025-06-24 06:39:13,122 [INFO] faiss.loader: Loading faiss with AVX2 support.
+2025-06-24 06:39:13,214 [INFO] faiss.loader: Successfully loaded faiss with AVX2 support.
+2025-06-24 06:39:13,221 [INFO] faiss: Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-06-24 06:39:14,798 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-24 06:39:14,833 [INFO] app.core.vector_engine: Retrieved 4 chinks from query: Hey. My name is Ife. I just watched Interstellar. Just wow!
+2025-06-24 06:39:17,072 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-24 06:39:17,096 [INFO] app.core.chat_engine: LLM Response: Hi Ife! Interstellar is indeed an incredible film with its stunning visuals and thought-provoking storyline. It's a movie that often leaves viewers in awe with its exploration of space, time, and love. What did you find most fascinating about it?
+2025-06-24 06:39:17,104 [INFO] app.core.chat_engine: Messages saved to db for session: 4c058ac2-00e4-4e72-a591-a2cd17d320e7
+2025-06-24 06:39:54,397 [INFO] app.core.chat_engine: Recieved message for 4c058ac2-00e4-4e72-a591-a2cd17d320e7: The whole thing... the blackhole/wormohole gargantua
+2025-06-24 06:39:54,400 [INFO] app.core.vector_engine: Loading vector store from faiss_index
+2025-06-24 06:39:55,440 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-24 06:39:55,443 [INFO] app.core.vector_engine: Retrieved 4 chinks from query: The whole thing... the blackhole/wormohole gargantua
+2025-06-24 06:39:59,181 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-24 06:39:59,186 [INFO] app.core.chat_engine: LLM Response: The black hole and wormhole concepts in Interstellar, particularly Gargantua, are indeed some of the most fascinating elements of the film. Gargantua is a massive black hole that plays a crucial role in the plot, and its depiction is based on scientific theories to ensure accuracy. The filmmakers consulted with physicist Kip Thorne to realistically portray the gravitational effects and visual appearance of a black hole. The depiction of time dilation near Gargantua, where time moves slower due to its immense gravitational pull, is a particularly intriguing aspect of the film. It blends science with storytelling, making it both educational and captivating.
+2025-06-24 06:39:59,193 [INFO] app.core.chat_engine: Messages saved to db for session: 4c058ac2-00e4-4e72-a591-a2cd17d320e7
