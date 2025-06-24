@@ -9,7 +9,7 @@ from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 
 from sqlalchemy.orm import Session
 
-from app.models import ChatSession, ChatMessage
+from app.models.chat import ChatSession, ChatMessage
 from app.core.vector_engine import retrieve_similar_chunks
 
 

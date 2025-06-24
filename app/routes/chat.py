@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends
 
 from sqlalchemy.orm import Session
 
-from app.models import ChatSession, ChatMessage
+from app.models.chat import ChatSession, ChatMessage
 from app.schemas.chat import ChatRequest, ChatResponse
 from app.core.chat_engine import chat_engine
 from app.dependencies import get_db
