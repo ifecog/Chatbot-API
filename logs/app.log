@@ -167,3 +167,21 @@ Traceback (most recent call last):
     version = _bcrypt.__about__.__version__
               ^^^^^^^^^^^^^^^^^
 AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-26 13:44:23,013 [WARNING] passlib.handlers.bcrypt: (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\hp\OneDrive\Documents\FastAPI\GenAIChat\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-26 13:46:20,507 [INFO] app.core.chat_engine: Recieved message for 17b6f8de-e95a-4b34-ba04-aa48ab3b0737: Hi, I am Peter Griffin... sound familiar?
+2025-06-26 13:46:20,514 [INFO] app.core.vector_engine: Loading vector store from faiss_index
+2025-06-26 13:46:20,523 [INFO] faiss.loader: Loading faiss with AVX2 support.
+2025-06-26 13:46:20,659 [INFO] faiss.loader: Successfully loaded faiss with AVX2 support.
+2025-06-26 13:46:20,674 [INFO] faiss: Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-06-26 13:46:22,625 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-26 13:46:22,681 [INFO] app.core.vector_engine: Retrieved 4 chinks from query: Hi, I am Peter Griffin... sound familiar?
+2025-06-26 13:46:24,886 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-26 13:46:24,932 [INFO] app.core.chat_engine: LLM Response: Yes, Peter Griffin is a well-known character from the animated television show "Family Guy." He is the main character, known for his humorous and often absurd antics.
+2025-06-26 13:46:24,953 [INFO] app.core.chat_engine: Messages saved to db for session: 17b6f8de-e95a-4b34-ba04-aa48ab3b0737
+2025-06-26 15:22:07,629 [INFO] httpx: HTTP Request: GET https://accounts.google.com/.well-known/openid-configuration "HTTP/1.1 200 OK"
+2025-06-26 15:28:36,886 [INFO] httpx: HTTP Request: GET https://accounts.google.com/.well-known/openid-configuration "HTTP/1.1 200 OK"
