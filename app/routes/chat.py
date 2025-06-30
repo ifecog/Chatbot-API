@@ -1,21 +1,30 @@
+import uuid
+
 from fastapi import APIRouter, HTTPException, Depends
 
 from sqlalchemy.orm import Session
 
+from app.models.user import User
 from app.models.chat import ChatSession, ChatMessage
 from app.schemas.chat import ChatRequest, ChatResponse
 from app.core.chat_engine import chat_engine
 from app.dependencies import get_db
+from app.utils.auth import get_current_user
 
 router = APIRouter(prefix='/api/v1/chat', tags=['Chat'])
 
 
 @router.post('/new-session')
-async def create_new_session(db: Session = Depends(get_db)):
-    import uuid
+async def create_new_session(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
     
     new_session_id = str(uuid.uuid4())
-    session = ChatSession(session_id=new_session_id)
+    session = ChatSession(
+        session_id=new_session_id,
+        user_id=current_user.id
+    )
     
     db.add(session)
     db.commit()
@@ -28,7 +37,9 @@ async def create_new_session(db: Session = Depends(get_db)):
 
 
 @router.post('/', response_model=ChatResponse)
-async def chat(request: ChatRequest, db: Session = Depends(get_db)):
+async def chat(
+    request: ChatRequest, db: Session = Depends(get_db)
+    ):
     session = db.query(ChatSession).filter_by(
         session_id=request.session_id
     ).first()

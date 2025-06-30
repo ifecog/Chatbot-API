@@ -1,10 +1,14 @@
+import os
+
 from fastapi import FastAPI
+from starlette.middleware.sessions import SessionMiddleware
 from dotenv import load_dotenv
 
 from app.logging_config import setup_logging
 from app.routes.chat import router as chat_router
 from app.routes.upload import router as upload_router
 from app.routes.user import router as user_router
+from app.routes.oauth import router as oauth_router
 
 load_dotenv()
 
@@ -16,9 +20,15 @@ app = FastAPI(
     version='1.0.0'
 )
 
+app.add_middleware(
+    SessionMiddleware,
+    secret_key=os.getenv('SESSION_SECRET_KEY')
+)
+
 app.include_router(chat_router)
 app.include_router(upload_router)
 app.include_router(user_router)
+app.include_router(oauth_router)
 
 
 @app.get('/')
