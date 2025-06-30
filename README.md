@@ -57,7 +57,7 @@ app/
 ### 1. Clone the repository
 
 ```bash
-git clone [https://github.com/your-username/genaichat.git](https://github.com/your-username/genaichat.git)
+git clone [https://github.com/your-username/genaichat.git](https://github.com/ifecog/palchat-api.git)
 cd genaichat
 ````
 
@@ -83,7 +83,7 @@ OPENAI_API_KEY=your_openai_api_key
 SECRET_KEY=your_jwt_secret_key
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
-DATABASE_URL=postgresql://user:password@localhost/genaichat
+DATABASE_URL=postgresql://user:password@localhost/db_name
 ```
 
 ### 5\. Run migrations
