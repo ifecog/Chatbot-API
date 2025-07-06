@@ -25,8 +25,9 @@ def create_user(user_data: UserCreate, db: Session):
         db.rollback()
         raise ValueError("Email of phone number already exists.")
     
+def get_user_by_id(user_id: str, db: Session):
+    return db.query(User).filter(User.id == user_id).first()
+    
 def get_user_by_email(email: str, db: Session):
     return db.query(User).filter(User.email == email).first()
     
-    
-# 4c058ac2-00e4-4e72-a591-a2cd17d320e7

@@ -1,5 +1,11 @@
+from enum import Enum
 from pydantic import BaseModel, EmailStr, constr
 import uuid
+
+
+class UserRole(str, Enum):
+    user = 'user'
+    admin = 'admin'
 
 
 class UserCreate(BaseModel):
@@ -16,6 +22,7 @@ class UserResponse(BaseModel):
     last_name: str
     email: EmailStr
     phone_number: str
+    role: UserRole
 
     class Config:
         orm_mode = True
