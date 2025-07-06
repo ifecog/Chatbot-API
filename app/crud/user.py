@@ -25,9 +25,23 @@ def create_user(user_data: UserCreate, db: Session):
         db.rollback()
         raise ValueError("Email of phone number already exists.")
     
+def get_all_users(db: Session):
+    return db.query(User).all()
+    
 def get_user_by_id(user_id: str, db: Session):
     return db.query(User).filter(User.id == user_id).first()
     
 def get_user_by_email(email: str, db: Session):
     return db.query(User).filter(User.email == email).first()
+
+def update_user(user: User, update: dict, db: Session):
+    for key, val in update.items():
+        setattr(user, key, val)
+    db.commit()
+    db.refresh(user)
+    return user
+
+def delete_user(user: User, db: Session):
+    db.delete(user)
+    db.commit()
     
