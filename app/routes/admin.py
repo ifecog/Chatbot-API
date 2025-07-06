@@ -10,7 +10,7 @@ from app.utils.auth import require_admin
 router = APIRouter(prefix="/admin", tags=["Admin"])
 
 @router.post('/create', response_model=UserResponse)
-def create_admin_user(user_data: UserCreate, db: Session = Depends(get_db)):
+def create_admin(user_data: UserCreate, db: Session = Depends(get_db)):
     if admin_exists(db):
         raise HTTPException(
             status_code=403,
@@ -26,7 +26,7 @@ def create_admin_user(user_data: UserCreate, db: Session = Depends(get_db)):
             detail=str(e)
         )
 
-@router.get('/users', response_model=UserResponse)
+@router.get('/users', response_model=List[UserResponse])
 def list_users(db: Session = Depends(get_db), _: str = Depends(require_admin)):
     return get_all_users(db)
 

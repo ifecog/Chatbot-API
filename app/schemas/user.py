@@ -1,3 +1,4 @@
+from typing import Optional
 from enum import Enum
 from pydantic import BaseModel, EmailStr, constr
 import uuid
@@ -14,6 +15,7 @@ class UserCreate(BaseModel):
     email: EmailStr
     phone_number: constr(min_length=10, max_length=15)
     password: constr(min_length=8)
+    role: Optional[UserRole] = UserRole.user
 
 
 class UserResponse(BaseModel):
