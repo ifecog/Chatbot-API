@@ -177,26 +177,9 @@ Only supported formats: `.pdf`, `.txt`, `.md`
 
 -----
 
-## ✅ Future Enhancements
-
-  * Refresh tokens
-  * Email verification
-  * Admin dashboard
-  * Web frontend (React / Next.js)
-  * File indexing by user
-  * Logging + analytics
-
------
-
 ## 📜 License
 
 This project is licensed under the MIT License.
-
------
-
-## 🙌 Author
-
-Built with ❤️ by Ifeoluwa Ilori.
 
 ```
 ```
